@@ -34,7 +34,7 @@ export default function PokemonFilter({pokemonList,setFilteredPokemon}){
         <button
         className="bg-yellow-400 text-black px-4 py-3 me-2 rounded-lg hover:bg-yellow-300 font-semibold"
         onClick={clearFilter}
-        disabled={!selectedType === ""}
+        disabled={selectedType === ""}
       >
         Clear
       </button>
