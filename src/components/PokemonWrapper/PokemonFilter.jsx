@@ -22,14 +22,22 @@ export default function PokemonFilter({pokemonList,setFilteredPokemon}){
         setFilteredPokemon(pokemonList.filter((pokemon) => {
           return pokemon.types.some((typeInfo) => typeInfo.type.name === event.target.value);
         }))
+      }
 
-        setTimeout(() => {
-            setSelectedType("");
-        }, 0);
+      const clearFilter = () => {
+        setSelectedType("");
+        setFilteredPokemon(pokemonList);
       }
 
     return(
-        <>
+        <div className="flex ">
+        <button
+        className="bg-yellow-400 text-black px-4 py-3 me-2 rounded-lg hover:bg-yellow-300 font-semibold"
+        onClick={clearFilter}
+        disabled={!selectedType}
+      >
+        Clear
+      </button>
         <select 
               name="pokemonType" 
               id="pokemonType" 
@@ -44,6 +52,6 @@ export default function PokemonFilter({pokemonList,setFilteredPokemon}){
                 ))
               }
             </select>
-        </>
+        </div>
     )
 }
