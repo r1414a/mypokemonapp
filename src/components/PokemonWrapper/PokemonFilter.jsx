@@ -32,9 +32,9 @@ export default function PokemonFilter({pokemonList,setFilteredPokemon}){
     return(
         <div className="flex ">
         <button
-        className="bg-yellow-400 text-black px-4 py-3 me-2 rounded-lg hover:bg-yellow-300 font-semibold"
+        className="bg-yellow-400 text-black px-4 py-3 me-2 rounded-lg hover:bg-yellow-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={clearFilter}
-        disabled={selectedType === ""}
+        disabled={!selectedType}
       >
         Clear
       </button>
