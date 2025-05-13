@@ -1,34 +1,32 @@
-import { useEffect, useState, useRef, useMemo } from "react"
+import { useContext } from "react"
 import pokemonlogo from "../../../src/assets/pokemon-23.svg"
 import { MdClear } from "react-icons/md";
-import PokemonFilter from "./PokemonFilter";
+import { FaFilter } from "react-icons/fa";
+import { PokemonContext } from "../../contextAPI/pokemonContextAPI";
 
-export default function PokemonSearchBar({ searchTerm, setSearchTerm, handleSearch, pokemonList, setFilteredPokemon }) {
-  const searchBarRef = useRef(null);
+export default function PokemonSearchBar({ handleSearch }) {
+
+  const {
+          searchTerm,
+          setSearchTerm,
+          showFilterOptions,
+          setShowFilterOptions
+      } = useContext(PokemonContext);
 
   const clearSearch = () => {
     setSearchTerm("");
   };
 
-  useEffect(() => {
-    if (searchBarRef.current) {
-      searchBarRef.current.focus();
-    }
-  }, []);
-
   return (
     <section className="max-w-lg mx-auto my-6 md:my-4">
       <div className="flex items-center justify-center space-x-2 mb-8">
         <p className="text-white text-2xl md:text-3xl">Search for a</p>
-        <img className="w-32 md:w-40 h-auto" src={pokemonlogo} alt="Pokemon Logo" />
+        <img className="w-30 md:w-40 h-auto" src={pokemonlogo} alt="Pokemon Logo" />
       </div>
-      <div className="relative flex flex-col gap-4 md:gap-0 md:flex-row items-center px-5 md:px-0">
-        <PokemonFilter
-          pokemonList={pokemonList}
-          setFilteredPokemon={setFilteredPokemon}
-        />
+      <div className="relative flex gap-4 flex-row items-center px-5 md:px-0">
+        <button onClick={() => setShowFilterOptions(!showFilterOptions)} className="cursor-pointer text-white flex  items-center gap-2 text-lg"><FaFilter className="text-yellow-400 text-lg"/>Filter</button>
         <input
-          ref={searchBarRef}
+          autoFocus
           type="search"
           name="pokemonSearchBar"
           id="pokemonSearchBar"
